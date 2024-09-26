@@ -91,4 +91,16 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # Print extra information on request spec failures
+  config.after(:each, type: :request) do |example|
+    next unless example.exception
+
+    puts <<~EOS
+      response
+        status = #{response.status}
+        headers = #{response.headers}
+        body = #{response.body}
+    EOS
+  end
 end
