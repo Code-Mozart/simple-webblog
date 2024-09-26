@@ -10,6 +10,14 @@ The following features were implemented:
 - Deleting a blog
 - Restricting access via HTTP Basic Authentication
 
+## Installation
+
+When you run the app for the first time you have to create and setup the databases. To do this run the following command:
+
+```sh
+docker compose run --entrypoint "rails db:setup" web
+```
+
 ## Development
 
 This application uses a docker-image for its development environment that mounts the local code.
@@ -17,14 +25,13 @@ To run this project you need to have [Docker](https://www.docker.com/) installed
 you can simply run
 
 ```sh
-docker-compose up
+docker compose watch
 ```
 
 to start the app. To start a terminal within the development environment run
 
-<!-- TODO:figure out the exact command -->
 ```sh
-docker run -it ...
+docker compose exec web bash
 ```
 
 ## Tests
