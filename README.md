@@ -39,7 +39,7 @@ docker compose exec web bash
 When developing the app on the docker container you may want to run the rails generator or create some files on the container in some other way. Because the repository directory is mounted the created files will be persisted. However, because docker runs as the root user on your machine you will not be able to write to the created files (e.g. from your code editor). To fix this issue you can change the ownership of these files to your current user by running:
 
 ```sh
-docker compose exec web chown -R $USER: .
+sudo chown -R $USER: .
 ```
 
 ## Tests

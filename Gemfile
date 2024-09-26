@@ -36,7 +36,7 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # Debugging
-  gem "debug", require: "debug/prelude"
+  gem "debug"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
@@ -51,6 +51,9 @@ group :development, :test do
   gem "rspec-rails", "~> 7.0.0"
   gem "factory_bot_rails"
   gem "faker"
+
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
 end
 
 group :development do
