@@ -46,15 +46,14 @@ group :development, :test do
 
   # Automatic annotation comments
   gem "annotate"
+
+  # Testing
+  gem "rspec-rails", "~> 7.0.0"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-end
-
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
 end
