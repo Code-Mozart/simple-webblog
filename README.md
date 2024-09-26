@@ -5,7 +5,7 @@ A simple fullstack webblog application. This is developed for an assignment from
 The following features were implemented:
 - Listing all blogs
 - Viewing a blog in detail
-- Editing a blog (supports richtext)
+- Editing a blog
 - Creating a new blog
 - Deleting a blog
 - Restricting access via HTTP Basic Authentication
