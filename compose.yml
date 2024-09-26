@@ -12,10 +12,8 @@ services:
       - RAILS_ENV=development
     env_file:
       - .env
-    develop:
-      watch:
-        - action: rebuild
-          path: .
+    volumes:
+      - .:/app
   db:
     image: postgres:latest
     env_file:
