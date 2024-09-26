@@ -13,3 +13,82 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13pt;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 5% 10%;
+    padding: 2em;
+    border: 1px solid black;
+}
+
+.vertical-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.border {
+    padding: 1em;
+    border: 1px solid black;
+}
+
+textarea {
+    resize: vertical;
+    padding: 1em;
+
+    min-height: 3em;
+    height: 3em;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: rgb(240, 240, 240);
+}
+
+form input[type=submit],
+button,
+.button {
+    margin-top: 1em;
+}
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: rgb(71, 71, 71);
+}
+
+button,
+input[type=button],
+input[type=submit],
+input[type=reset],
+.button,
+a.button {
+    font-size: smaller;
+    padding: 1em;
+    text-decoration: none;
+    width: fit-content;
+    background-color: black;
+    color: white;
+}
+
+p.max-3-lines {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 3em;
+}
+
+.notice {
+    padding: 1em;
+    border: 1px solid green;
+}
+
+.notice:empty {
+    display: none;
+}
