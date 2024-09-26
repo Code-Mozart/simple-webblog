@@ -4,11 +4,25 @@ RSpec.describe "Blogs", type: :system do
   TITLE_ID = "#title"
   BODY_ID = "#body"
 
-  before do
+  # FIXME: this does not quite work yet and says 401. Its really hard to find recent documentation for this.
+  # # taken from https://stackoverflow.com/questions/53082658/how-do-you-fill-in-or-bypass-http-basic-auth-in-rails-5-2-system-tests
+  # def visit_authenticated(path)
+  #   credentials = Rails.application.credentials
+  #   name = credentials.dig(:basic_authentication, :name)
+  #   password = credentials.dig(:basic_authentication, :password)
+  #   visit "http://#{name}:#{password}@example.com:3000#{path}"
+  # end
+
+  before do |example|
     driven_by(:rack_test)
   end
 
   subject { page }
+
+  # FIXME: if we figure out how to authenticate during tests then we should also
+  # specify the behaviour when we are not authenticated
+  context "when visiting the index without being authenticated", :unauthenticated do
+  end
 
   context "when creating a blog" do
     let(:blog_attributes) { attributes_for :blog }
