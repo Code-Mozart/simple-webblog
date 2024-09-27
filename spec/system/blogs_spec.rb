@@ -35,16 +35,16 @@ RSpec.describe "Blogs", type: :system do
       click_button "Create Blog"
     end
 
-    it { expect(page.find TITLE_ID).to have_text(blog_attributes[:title].gsub(/\n/, "\r ")) }
-    it { expect(page.find BODY_ID).to have_text(blog_attributes[:body].gsub(/\n/, "\r ")) }
+    it { expect(page.find TITLE_ID).to have_text_with_normalized_whitespace(blog_attributes[:title]) }
+    it { expect(page.find BODY_ID).to have_text_with_normalized_whitespace(blog_attributes[:body]) }
 
     context "and returning to the index" do
       before do
         visit blogs_path
       end
 
-      it { is_expected.to have_text(:all, blog_attributes[:title].gsub(/\n/, "\r ")) }
-      it { is_expected.to have_text(:all, blog_attributes[:body].gsub(/\n/, "\r ")) }
+      it { is_expected.to have_text_with_normalized_whitespace(blog_attributes[:title], :include_hidden_text) }
+      it { is_expected.to have_text_with_normalized_whitespace(blog_attributes[:body], :include_hidden_text) }
     end
   end
 
@@ -55,8 +55,8 @@ RSpec.describe "Blogs", type: :system do
       visit blog_path(blog)
     end
 
-    it { expect(page.find TITLE_ID).to have_text(blog.title.gsub(/\n/, "\r ")) }
-    it { expect(page.find BODY_ID).to have_text(blog.body.gsub(/\n/, "\r ")) }
+    it { expect(page.find TITLE_ID).to have_text_with_normalized_whitespace(blog.title) }
+    it { expect(page.find BODY_ID).to have_text_with_normalized_whitespace(blog.body) }
   end
 
   context "when editing a blog" do
@@ -68,8 +68,8 @@ RSpec.describe "Blogs", type: :system do
     end
 
     describe "the initial form" do
-      it { expect(page.find "#blog_title").to have_text(blog.title.gsub(/\n/, "\r ")) }
-      it { expect(page.find "#blog_body").to have_text(blog.body.gsub(/\n/, "\r ")) }
+      it { expect(page.find "#blog_title").to have_text_with_normalized_whitespace(blog.title) }
+      it { expect(page.find "#blog_body").to have_text_with_normalized_whitespace(blog.body) }
     end
 
     context "after saving the changes" do
@@ -80,16 +80,16 @@ RSpec.describe "Blogs", type: :system do
         click_button "Update Blog"
       end
 
-      it { expect(page.find TITLE_ID).to have_text(:all, new_blog_attributes[:title].gsub(/\n/, "\r ")) }
-      it { expect(page.find BODY_ID).to have_text(:all, new_blog_attributes[:body].gsub(/\n/, "\r ")) }
+      it { expect(page.find TITLE_ID).to have_text_with_normalized_whitespace(new_blog_attributes[:title]) }
+      it { expect(page.find BODY_ID).to have_text_with_normalized_whitespace(new_blog_attributes[:body]) }
 
       context "and returning to the index" do
         before do
           visit blogs_path
         end
 
-        it { is_expected.to have_text(:all, new_blog_attributes[:title].gsub(/\n/, "\r ")) }
-        it { is_expected.to have_text(:all, new_blog_attributes[:body].gsub(/\n/, "\r ")) }
+        it { is_expected.to have_text_with_normalized_whitespace(new_blog_attributes[:title], :include_hidden_text) }
+        it { is_expected.to have_text_with_normalized_whitespace(new_blog_attributes[:body], :include_hidden_text) }
       end
     end
   end
@@ -102,12 +102,7 @@ RSpec.describe "Blogs", type: :system do
       click_button "Destroy this blog"
     end
 
-    it { is_expected.not_to have_text(:all, blog.title.gsub(/\n/, "\r ")) }
-    it { is_expected.not_to have_text(:all, blog.body.gsub(/\n/, "\r ")) }
+    it { is_expected.not_to have_text_with_normalized_whitespace(blog.title, :include_hidden_text) }
+    it { is_expected.not_to have_text_with_normalized_whitespace(blog.body, :include_hidden_text) }
   end
-
-  # FIXME: sometimes some examples fail because of the weird behaviour with the line endings.
-  # "expect(...).to have_text(...)" seems to check for an exact match so the line endings
-  # must also match. they sometimes do and sometimes do not. this is something to look into.
-  # maybe just find a way to dont match the string even if the whitespaces differ.
 end
