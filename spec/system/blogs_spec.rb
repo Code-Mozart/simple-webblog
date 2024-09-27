@@ -4,17 +4,11 @@ RSpec.describe "Blogs", type: :system do
   TITLE_ID = "#title"
   BODY_ID = "#body"
 
-  # FIXME: this does not quite work yet and says 401. Its really hard to find recent documentation for this.
-  # # taken from https://stackoverflow.com/questions/53082658/how-do-you-fill-in-or-bypass-http-basic-auth-in-rails-5-2-system-tests
-  # def visit_authenticated(path)
-  #   credentials = Rails.application.credentials
-  #   name = credentials.dig(:basic_authentication, :name)
-  #   password = credentials.dig(:basic_authentication, :password)
-  #   visit "http://#{name}:#{password}@example.com:3000#{path}"
-  # end
+  include AuthenticationHelper
 
   before do |example|
     driven_by(:rack_test)
+    authenticate_with_current_driver unless example.metadata[:unauthenticated]
   end
 
   subject { page }

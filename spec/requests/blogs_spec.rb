@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Blogs", type: :request do
+  include AuthenticationHelper
+
   subject { response }
 
   # In my option it would not add anything meaningful to have request specs
@@ -9,7 +11,7 @@ RSpec.describe "Blogs", type: :request do
 
   describe "GET /blogs" do
     before(:each) do
-      get blogs_path(format: :json)
+      get blogs_path(format: :json), headers: get_authentication_header
     end
 
     it("responds with HTTP status code 200 OK") do

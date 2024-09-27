@@ -4,9 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate
 
   def authenticate
-    # FIXME: remove as soon as we get authentication to work in the tests
-    return if Rails.env.test?
-
     http_basic_authenticate_or_request_with(
       name: Rails.application.credentials.dig(:basic_authentication, :name),
       password: Rails.application.credentials.dig(:basic_authentication, :password),
