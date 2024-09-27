@@ -12,7 +12,20 @@ The following features were implemented:
 
 ## Installation
 
-When you run the app for the first time you have to create and setup the databases. To do this run the following command:
+### Prerequisits
+
+You need to have [Docker](https://www.docker.com/) installed on your system. You also need these 3 credential files which
+are not included in the Git repository for security reasons:
+1. `.env`
+2. `config/credentials/development.key`
+3. `config/credentials/test.key`
+
+Contact the owners of the repository to request the files.
+
+### Installation Instructions
+
+First copy the credential files to their corresponding locations. Then you have to create and setup the databases.
+To do this run the following command:
 
 ```sh
 docker compose run --entrypoint "rails db:setup" web
@@ -20,12 +33,10 @@ docker compose run --entrypoint "rails db:setup" web
 
 ## Development
 
-This application uses a docker-image for its development environment that mounts the local code.
-To run this project you need to have [Docker](https://www.docker.com/) installed. With Docker installed
-you can simply run
+This application uses a docker-image for its development environment that mounts the local code. Simply run
 
 ```sh
-docker compose watch
+docker compose up
 ```
 
 to start the app. To start a terminal within the development environment run
